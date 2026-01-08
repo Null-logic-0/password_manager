@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PasswordManager</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body class="bg-gray-50">
+<header>
+  <%= render "layouts/nav_menu" %>
+</header>
+
+<main class="max-w-7xl mx-auto mt-6 px-4 py-6">
+  <%= render "layouts/flash" %>
+
+  <%= yield %>
+</main>
+</body>
+</html>

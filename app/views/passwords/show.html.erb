@@ -1,0 +1,73 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+  <div class="mb-6">
+    <%= render "shared/go_back" %>
+  </div>
+
+  <div class="bg-white overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg mb-10">
+
+    <div class="px-4 py-5 sm:px-6 flex justify-between items-center bg-gray-50 border-b border-gray-200">
+      <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold leading-6 text-gray-900 flex items-center gap-2">
+          <%= @password.url %>
+
+          <%= link_to @password.url, target: :_blank, class: "group relative" do %>
+            <span class="sr-only">Open website</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 text-gray-400 group-hover:text-indigo-600 transition-colors">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+            </svg>
+          <% end %>
+        </h1>
+      </div>
+
+      <% if user_password.editable? %>
+        <%= link_to edit_password_path(@password), class: "inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition" do %>
+          <svg class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z"/>
+            <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z"/>
+          </svg>
+          Edit
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="px-4 py-5 sm:p-6 space-y-6">
+      <h2 class="text-base font-semibold leading-7 text-gray-900 border-b border-gray-100 pb-2">Credentials</h2>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <%= render "shared/copy_field",
+                   title: "Username / Email",
+                   value: @password.username %>
+
+        <%= render "shared/copy_field",
+                   title: "Password",
+                   value: @password.password %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="md:flex md:items-center md:justify-between mb-4">
+      <div class="min-w-0 flex-1">
+        <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+          Shared With
+        </h2>
+      </div>
+      <div class="mt-4 flex md:ml-4 md:mt-0">
+        <% if user_password.shareable? %>
+          <%= link_to new_password_share_path(@password), class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition" do %>
+            <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z"/>
+            </svg>
+            Add a user
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="bg-white shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+      <%= render "password_shares_table", password: @password %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+<div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+  <div class="px-4 py-6 sm:p-8">
+
+    <h3 class="text-base font-semibold leading-7 text-gray-900 mb-6">Share Access</h3>
+
+    <%= form_with model: user_password, url: password_shares_path(password), class: "space-y-6" do |form| %>
+
+      <div>
+        <%= form.label :user_id, "Select User", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <div class="mt-2">
+          <%= form.collection_select :user_id,
+                                     password.shareable_users,
+                                     :id, :email,
+                                     { prompt: "Choose a user..." },
+                                     class: "block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+        <p class="mt-2 text-xs text-gray-500">Only users not currently shared with will appear here.</p>
+      </div>
+
+      <div>
+        <%= form.label :role, "Permission Level", class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <div class="mt-2">
+          <%= form.select :role,
+                          UserPassword::ROLES.map { |r| [r.titleize, r] },
+                          {},
+                          class: "block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <%= form.submit "Share Password", class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer transition-colors" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
