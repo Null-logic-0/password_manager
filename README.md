@@ -7,6 +7,12 @@
 A secure, self-hosted password management application built with **Ruby on Rails**. This application allows users to
 safely store, manage, and retrieve their credentials with a focus on security and simplicity.
 
+
+
+https://github.com/user-attachments/assets/5f7954b7-fefe-42a5-bd89-8270a8eae20f
+
+
+
 ## 🚀 Features
 
 * **Secure Storage:** Encrypted storage of sensitive credentials.
